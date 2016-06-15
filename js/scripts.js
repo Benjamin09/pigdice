@@ -60,6 +60,42 @@ function easyAI () {
   }
 }
 
+function difficultAI () {
+  if(players[(turnCount-1)%players.length].species!="smartcomputer"){
+    var AIRolls = [];
+    var AIResult = roll();
+    if (AIResult != 1 && tempScore < 20) {
+      AIRolls.push(AIResult)
+      subDifficultAI(AIRolls)
+    }
+  }
+}
+
+function subDifficultAI(arr) {
+  var subAIResult = roll();
+  if (subAIResult != 1 && tempScore < 20) {
+    arr.push(subAIResult)
+    subDifficultAI(arr)
+  } else if (subAIResult != 1) {
+    arr.push(subAIResult);
+    var difficultAIString = "";
+    var sum=0;
+    for(i=0;i<arr.length;i++) {
+      var rollword=arr[i].toString()
+      if (i === (arr.length - 1)) {
+      difficultAIString = difficultAIString + "and a " + rollword;
+      } else {
+      difficultAIString= difficultAIString + rollword + ", ";
+      }
+      sum+=arr[i];
+    };
+    alert("The AI elected to hold after rolling a " + difficultAIString + " for a total of "+sum+ ".");
+    hold(players.length);
+    updateDisplay();
+    easyAI();
+  }
+}
+
 function newGame () {
   var fullreset=true;
   if (turnCount > 0) {
@@ -117,7 +153,7 @@ $(document).ready(function() {
     $("#rollResult").text("Starting a new game. Click Roll to roll the dice!");
   })
   $("button#aiTurn").click(function() {
-    easyAI();
+    difficultAI();
     $("#rollResult").text("---");
   })
 });
