@@ -18,6 +18,11 @@ function hold () {
   tempScore = 0;
 }
 
+function newGame () {
+  gameScore = 0;
+  tempScore = 0;
+}
+
 
 
 //UI Logic
@@ -34,4 +39,11 @@ $(document).ready(function() {
     $("#rollResult").text("You held your score.");
     $("#tempScore").text("Your current score is " + tempScore);
   })
+  $("button#newGame").click(function() {
+    newGame();
+    $("#rollResult").text("Starting a new game. Click Roll to roll the dice!");
+    $("#gameScore").text("Your total score is " + gameScore);
+    $("#tempScore").text("Your current score is " + tempScore);
+  })
+
 });
