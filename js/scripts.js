@@ -21,6 +21,7 @@ function roll () {
   }
   turnCount += 1;
   easyAI();
+  difficultAI();
   } else {
   tempScore += rollResult;
   }
@@ -46,7 +47,7 @@ function hold (num) {
 }
 
 function easyAI () {
-  if(players[(turnCount-1)%players.length].species==="computer"){
+  if(players[(turnCount-1)%players.length].species==="dumbcomputer"){
     var AIResult = roll();
     if (AIResult != 1) {
       AIResult2 = roll();
@@ -55,13 +56,14 @@ function easyAI () {
         hold(players.length);
         updateDisplay();
         easyAI();
+        difficultAI();
       }
     }
   }
 }
 
 function difficultAI () {
-  if(players[(turnCount-1)%players.length].species!="smartcomputer"){
+  if(players[(turnCount-1)%players.length].species==="smartcomputer"){
     var AIRolls = [];
     var AIResult = roll();
     if (AIResult != 1 && tempScore < 20) {
@@ -93,6 +95,7 @@ function subDifficultAI(arr) {
     hold(players.length);
     updateDisplay();
     easyAI();
+    difficultAI();
   }
 }
 
@@ -108,10 +111,15 @@ function newGame () {
       var playerNameInput = prompt("Enter a name for Player " + (i+1));
       players.push(new player(playerNameInput,0,"human"));
     }
-    var aiNumber = parseInt(prompt("How many AI players?"));
-    for (i=0; i<aiNumber; i++) {
-      var aiNameInput = prompt("Enter a name for Computer Player " + (i+1));
-      players.push(new player(aiNameInput,0,"computer"));
+    var easyAINumber = parseInt(prompt("How many easy AI players?"));
+    for (i=0; i<easyAINumber; i++) {
+      var aiNameInput = prompt("Enter a name for Easy Computer Player " + (i+1));
+      players.push(new player(aiNameInput,0,"dumbcomputer"));
+    }
+    var difficultaiNumber = parseInt(prompt("How many difficult AI players?"));
+    for (i=0; i<difficultaiNumber; i++) {
+      var difficultaiNameInput = prompt("Enter a name for Difficult Computer Player " + (i+1));
+      players.push(new player(difficultaiNameInput,0,"smartcomputer"));
     }
   } else {
     for(i=0; i<players.length; i++) {
@@ -146,6 +154,7 @@ $(document).ready(function() {
     $("#rollResult").text("You held your score.");
     updateDisplay();
     easyAI();
+    difficultAI();
   })
   $("button#newGame").click(function() {
     newGame();
