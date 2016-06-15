@@ -33,3 +33,19 @@ Sample Output: Player 1, Player 2, Player 3, Player 4
 - Prompt the user for player names.
 Sample Input: Charlie
 Sample Output: Player 1 is Charlie
+
+- Ask the user how many AI players they want to play against.
+Sample Input: 2
+Sample Output: 2 Players added to turn rotation with "computer" as species.
+
+- Create a button that rolls for AI players.
+Sample Input: AI Roll button is clicked
+Sample Output: 5, added to AI's total
+
+- Create an AI that will roll twice on its turn, with the result going to the AI's score.
+Sample Input: Turn goes to an AI players
+Sample Output: The AI rolled a 3 and a 4 for a total of 7.
+
+- At the end of the game, give the player the option to start the game over with same settings as the game they just finished.
+Sample Input: Same Players button is clicked.
+Sample Output: The same list of players is used.

@@ -1,5 +1,5 @@
 var tempScore = 0;
-var turnCount = 1;
+var turnCount = 0;
 var players=[];
 
 //Business Logic
@@ -61,24 +61,31 @@ function easyAI () {
 }
 
 function newGame () {
-  players=[];
-  var playerNumber = parseInt(prompt("How many human players?"))
-  for (i=0; i<playerNumber; i++) {
-    var playerNameInput = prompt("Enter a name for Player " + (i+1));
-    players.push(new player(playerNameInput,0,"human"));
+  var fullreset=true;
+  if (turnCount > 0) {
+    fullreset = !confirm("Would you like to play again with the same players?");
   }
-  var aiNumber = parseInt(prompt("How many AI players?"));
-  for (i=0; i<aiNumber; i++) {
-    var aiNameInput = prompt("Enter a name for Computer Player " + (i+1));
-    players.push(new player(aiNameInput,0,"computer"));
+  if(fullreset) {
+    players=[];
+    var playerNumber = parseInt(prompt("How many human players?"))
+    for (i=0; i<playerNumber; i++) {
+      var playerNameInput = prompt("Enter a name for Player " + (i+1));
+      players.push(new player(playerNameInput,0,"human"));
+    }
+    var aiNumber = parseInt(prompt("How many AI players?"));
+    for (i=0; i<aiNumber; i++) {
+      var aiNameInput = prompt("Enter a name for Computer Player " + (i+1));
+      players.push(new player(aiNameInput,0,"computer"));
+    }
+  } else {
+    for(i=0; i<players.length; i++) {
+      players[i].gameScore=0;
+    }
   }
   tempScore = 0;
   turnCount = 1;
   updateDisplay();
 }
-
-
-
 
 function updateDisplay() {
   $("#tempScore").text("Your current score is " + tempScore);
