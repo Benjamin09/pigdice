@@ -1,4 +1,5 @@
 var tempScore = 0;
+var gameScore = 0;
 
 //Business Logic
 function roll () {
@@ -12,13 +13,25 @@ function roll () {
   }
 }
 
+function hold () {
+  gameScore += tempScore;
+  tempScore = 0;
+}
+
+
 
 //UI Logic
 $(document).ready(function() {
   // event.preventDefault()
   $("button#roll").click(function() {
-  rollResult=roll();
-  $("#rollResult").text("Your roll was " + rollResult);
-  $("#tempScore").text("Your current score is " + tempScore);
+    rollResult=roll();
+    $("#rollResult").text("Your roll was " + rollResult);
+    $("#tempScore").text("Your current score is " + tempScore);
+  })
+  $("button#hold").click(function() {
+    hold();
+    $("#gameScore").text("Your total score is " + gameScore);
+    $("#rollResult").text("You held your score.");
+    $("#tempScore").text("Your current score is " + tempScore);
   })
 });
