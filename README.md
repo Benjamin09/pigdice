@@ -21,3 +21,7 @@ Sample Output: Score becomes 0
 - A turn count increases by 1 every time the player holds or rolls a 1.
 Sample Input: Player rolls a 1
 Sample Output: Turn count increases by 1.
+
+- The game keeps two total score tallies; one is altered on odd turns (Player 1), the other altered on even turns (Player 2).
+Sample Input: Turn count is 2 and the player holds.
+Sample Output: Temporary score is added to Player 2's game score.
