@@ -3,8 +3,13 @@ var tempScore = 0;
 //Business Logic
 function roll () {
   var rollResult = Math.ceil(6*Math.random());
+  if (rollResult === 1) {
+  tempScore = 0;
+  return rollResult;
+  } else {
   tempScore += rollResult;
   return rollResult;
+  }
 }
 
 
