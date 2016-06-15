@@ -46,10 +46,25 @@ function hold (num) {
   }
 }
 
+function leadCheck (score) {
+  var deficit=0;
+  for(i=0; i<players.length; i++) {
+    thisDifference = score - players[i].gameScore
+    if(thisDifference < deficit) {
+      deficit = thisDifference;
+    }
+  }
+  return (-deficit/5);
+}
+
 function easyAI () {
   if(players[(turnCount-1)%players.length].species==="dumbcomputer"){
     var AIResult = roll();
     if (AIResult != 1) {
+      if(tempScore+players[(turnCount-1)%players.length].gameScore>=100) {
+        hold(players.length);
+        return
+      }
       AIResult2 = roll();
       if (AIResult2 !=1) {
         alert("The AI has elected to hold after rolling a " + AIResult + " and a " + AIResult2 + ".");
@@ -74,8 +89,12 @@ function difficultAI () {
 }
 
 function subDifficultAI(arr) {
+  if(tempScore+players[(turnCount-1)%players.length].gameScore>=100) {
+    hold(players.length);
+    return
+  }
   var subAIResult = roll();
-  if (subAIResult != 1 && tempScore < 20) {
+  if (subAIResult != 1 && tempScore < (20+leadCheck(players[(turnCount-1)%players.length].gameScore))) {
     arr.push(subAIResult)
     subDifficultAI(arr)
   } else if (subAIResult != 1) {
