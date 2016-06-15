@@ -1,3 +1,8 @@
 #pig-dice-game {
   display: none;
 }
+
+#newGame {
+  padding: 10px;
+  margin: 10px;
+}

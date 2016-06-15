@@ -47,10 +47,10 @@ function hold (num) {
 }
 
 function leadCheck (score) {
-  var deficit=0;
+  var deficit=100;
   for(i=0; i<players.length; i++) {
     thisDifference = score - players[i].gameScore
-    if(thisDifference < deficit) {
+    if(thisDifference < deficit && thisDifference!=0) {
       deficit = thisDifference;
     }
   }
@@ -176,6 +176,7 @@ $(document).ready(function() {
     difficultAI();
   })
   $("button#newGame").click(function() {
+    $("#gameIntro").fadeOut();
     newGame();
     $("#pig-dice-game").show();
     $("#rollResult").text("Starting a new game. Click Roll to roll the dice!");
