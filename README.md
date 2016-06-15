@@ -17,3 +17,7 @@ Sample Output: Permanent Score gets the temporary score added to it.
 - The player can reset the game.
 Sample Input: Reset button is clicked
 Sample Output: Score becomes 0
+
+- A turn count increases by 1 every time the player holds or rolls a 1.
+Sample Input: Player rolls a 1
+Sample Output: Turn count increases by 1.
