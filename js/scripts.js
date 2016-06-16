@@ -119,7 +119,7 @@ function subDifficultAI(arr) {
 }
 
 function newGame () {
-  var fullreset=true;
+  var fullreset=true ;
   if (turnCount > 0) {
     fullreset = !confirm("Would you like to play again with the same players?");
   }
@@ -127,7 +127,7 @@ function newGame () {
     players=[];
     var playerNumber = parseInt(prompt("How many human players?"))
     for (i=0; i<playerNumber; i++) {
-      var playerNameInput = prompt("Enter a name for Player " + (i+1));
+      var playerNameInput = prompt("Enter a name for Human Player " + (i+1));
       players.push(new player(playerNameInput,0,"human"));
     }
     var easyAINumber = parseInt(prompt("How many easy AI players?"));
